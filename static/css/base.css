@@ -3,7 +3,8 @@
 body { 
     margin:0;
     padding:0;
-    font-family:helvetica, sans-serif; 
+    font-family:helvetica, sans-serif;
+    background: #f2e4d1;
 }
 
 h1, h2, h3, h4, h5 , h6 { 
@@ -12,16 +13,16 @@ h1, h2, h3, h4, h5 , h6 {
 
 a {
     text-decoration:none;
-    color:#5993bb;
+    color:#Ecb69b;
 }
 
 a:hover {
-    color:#77b6e2;
+    color:#Ecb69b;
 }
 
 a.button, input[type="submit"] {
     color:#fff;
-    background:#5993bb;
+    background:#Ecb69b;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
@@ -30,7 +31,7 @@ a.button, input[type="submit"] {
 
 a.button.light {
     color:#666;
-    background:#ededed;
+    background:#f2e4d1;
 }
 
 .text-left {
@@ -55,12 +56,12 @@ table th, table td {
 }
 
 tbody tr:nth-child(odd) {
-    background:#efefef;
+    background:#f2e4d1;
 }
 
 thead th, tbody tr.total {
-    background:#5993bb;
-    color:#fff;
+    background:#Ecb69b;
+    color:#f2e4d1;
     font-weight:bold;
 }
 
@@ -97,7 +98,7 @@ form p input {
     margin-bottom:10px;
     padding:10px 12px;
     border:0;
-    background:#efefef;
+    background:#f2e4d1;
     color:#666;
     border-radius:4px;
 }
@@ -119,7 +120,7 @@ ul.errorlist {
 }
 
 #subheader {
-    background:#ececec;
+    background:#f2e4d1;
     color:#444;
     padding:15px 100px;
     overflow:auto;
@@ -165,12 +166,12 @@ ul.errorlist {
 }
 
 #sidebar ul li.selected {
-    background:#5993bb;
+    background:#Ecb69b;
     border-radius:4px;
 }
 
 #sidebar ul li.selected a {
-    color:#fff;
+    color:#f2e4d1;
 }
 
 #main {
@@ -224,14 +225,14 @@ ul.errorlist {
 .order-info {
     float:right;
     width:300px;
-    background:#efefef;
+    background:#f2e4d1;
     padding:10px 20px;
     color:#333;
-    border-bottom:4px solid #5993bb;
+    border-bottom:4px solid #Ecb69b;
 }
 
 .order-info h3 {
-    color:#5993bb;
+    color:#Ecb69b;
 }
 
 .order-info ul li {
