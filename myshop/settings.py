@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-0ozmq)^ncdi3cs5@eq=af@n&p%r=#9pyuqc7h8yuk+=l*ivq)i
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
@@ -119,15 +119,15 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
 
-#if not DEBUG:
-    #STATIC_URL = '/static/'
-    #STATIC_ROOT = os.path.join(BASE_DIR,"static")
-    #MEDIA_ROOT = MEDIA_DIR
-    #MEDIA_URL = '/media/'
+if not DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR,"static")
+    MEDIA_ROOT = MEDIA_DIR
+    MEDIA_URL = '/media/'
 
-#else:
-    #MEDIA_URL = '/media/'
-    #STATIC_URL = '/static/'
+else:
+    MEDIA_URL = '/media/'
+    STATIC_URL = '/static/'
 # with products in the database when DEBUG = False
 # pythonanywhere should serve the static files automatically
 
@@ -143,8 +143,3 @@ LOGOUT_REDIRECT_URL = '/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-
-import os
-MEDIA_URL = 'media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
