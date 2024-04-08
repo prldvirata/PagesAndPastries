@@ -34,7 +34,13 @@
             <a class="nav-link" href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a>
             <a class="nav-link" href="#"><span class="glyphicon glyphicon-log-in"></span>Sign Up</a>
         {% endif %}
-</div>
+    </div>
+    <div>
+        {% if user.is_authenticated %}
+            Welcome, {{ user.first_name }}
+        {% endif %}
+    </div>
+
 <div id="content">
     {% block content %}
     {% endblock %}
