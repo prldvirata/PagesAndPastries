@@ -15,7 +15,7 @@ def register(request):
             user.save()
             return redirect('login')
 
-        return redirect("index")
+        return redirect("shop:product_list")
     else:
         form = RegisterForm()
 
