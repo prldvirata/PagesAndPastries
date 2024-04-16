@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models import Avg
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -17,8 +19,8 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-            return reverse('shop:product_list_by_category',
-                           args=[self.slug])
+        return reverse('shop:product_list_by_category',
+                       args=[self.slug])
 
 
 class Product(models.Model):
@@ -45,4 +47,4 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:product_detail',
-                           args=[self.id, self.slug])
+                       args=[self.id, self.slug])
