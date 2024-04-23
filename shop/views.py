@@ -45,3 +45,12 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'cart': cart})
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        products = Product.objects.filter(name__contains=searched).order_by('-id')
+        return render(request, 'shop/search.html', {'searched': searched, 'products': products})
+    else:
+        return render(request, 'shop/search.html', {})
