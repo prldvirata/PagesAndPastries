@@ -5,24 +5,29 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Checkout</h1>
+    {% if user.is_authenticated %}
+      <h1>Checkout</h1>
 
-  <div class="order-info">
-    <h3>Your order</h3>
-    <ul>
-      {% for item in cart %}
-        <li>
-          {{ item.quantity }}x {{ item.product.name }}
-          <span>${{ item.total_price }}</span>
-        </li>
-      {% endfor %}
-    </ul>
-    <p>Total: ${{ cart.get_total_price }}</p>
-  </div>
+      <div class="order-info">
+        <h3>Your order</h3>
+        <ul>
+          {% for item in cart %}
+            <li>
+              {{ item.quantity }}x {{ item.product.name }}
+              <span>${{ item.total_price }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+        <p>Total: ${{ cart.get_total_price }}</p>
+      </div>
 
-  <form action="." method="post" class="order-form">
-    {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
-    {% csrf_token %}
-  </form>
+      <form action="." method="post" class="order-form">
+        {{ form.as_p }}
+        <p><input type="submit" value="Place order"></p>
+        {% csrf_token %}
+        {% else %}
+        <p> You must be logged in to proceed to check out.</p> <a href="{% url 'login' %}"> Login Now </a>
+        <p>Don't have an account?</p><a href="{% url 'register' %}">Sign Up Now</a>
+      {% endif %}
+      </form>
 {% endblock %}
