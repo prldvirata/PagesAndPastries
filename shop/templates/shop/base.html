@@ -4,48 +4,86 @@
 <head>
     <meta charset="utf-8"/>
     <title>{% block title %}Pages and Pastries{% endblock %}</title>
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
-<div id="header">
-    <a href="/" class="logo">Pages and Pastries</a>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url "shop:product_list" %}">Pages and Pastries</a>
     <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'shop:search' %}">
         {% csrf_token %}
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                name="searched">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-</div>
-<div id="subheader">
-    <div class="cart">
-        {% with total_items=cart|length %}
-            {% if cart|length > 0 %}
-                Your cart:
-                <a href="{% url "cart:cart_detail" %}">
-                    {{ total_items }} item{{ total_items|pluralize }},
-                    ${{ cart.get_total_price }}
-                </a>
-            {% else %}
-                Your cart is empty.
-            {% endif %}
-        {% endwith %}
-    </div>
-        {% if user.is_authenticated %}
-              <form action="{% url 'logout' %}" method="post">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li style="padding-right: 10px" class="nav-item active">
+                <a class="nav-link" href="{% url "shop:product_list" %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">|</a>
+            </li>
+            <li style="padding: 0 10px 0 10px" class="nav-item">
+                <a class="nav-link disabled" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">|</a>
+            </li>
+            <li style="padding: 0 10px 0 10px" class="nav-item">
+                <a class="nav-link disabled" href="#">Help</a>
+            </li>
+            <li style="padding: 0 10px 0 10px" class="nav-item dropdown">
+                <button class="btn btn-secondary" href=" {% url 'cart:cart_detail' %}" type="button"
+                        aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-cart-shopping"></i>
+                    {% with total_items=cart|length %}
+                        {% if cart|length > 0 %}
+                            Your cart:
+                            <a style="color: white" href="{% url "cart:cart_detail" %}">
+                                {{ total_items }} item{{ total_items|pluralize }},
+                                ${{ cart.get_total_price }}
+                            </a>
+                        {% else %}
+                            Your cart is empty.
+                        {% endif %}
+                    {% endwith %}
+                </button>
+            </li>
+            {% if user.is_authenticated %}
+                  <form action="{% url 'logout' %}" method="post">
                  {% csrf_token %}
                  <button type="submit">Log out</button>
-              </form>
-        {% else %}
-            <a class="nav-link" href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a>
-            <a class="nav-link" href="{% url 'register' %}"><span class="glyphicon glyphicon-log-in"></span>Sign Up</a>
-        {% endif %}
+                    </form>
+            {% else %}
+                <li class="nav-item dropdown">
+                <button class="btn btn-secondary" href="#" id="navbarDropdown" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i>
+                </button>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="{% url "login" %}">Log in</a>
+                <a class="dropdown-item" href="{% url "register" %}">Register</a>
+            {% endif %}
+
+            </div>
+            </li>
+        </ul>
+
     </div>
-    <div>
-        {% if user.is_authenticated %}
-            Welcome, {{ user.first_name }}
-        {% endif %}
-    </div>
+</nav>
 
 <div id="content">
     {% block content %}
