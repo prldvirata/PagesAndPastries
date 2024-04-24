@@ -37,6 +37,14 @@
             <li class="nav-item">
                 <a class="nav-link">|</a>
             </li>
+            {% if user.is_superuser %}
+                <li style="padding-right: 10px" class="nav-item active">
+                    <a class="nav-link" href="{% url "shop:product_create" %}">Add Item<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link">|</a>
+                    </li>
+            {% endif %}
             <li style="padding: 0 10px 0 10px" class="nav-item">
                 <a class="nav-link disabled" href="#">About</a>
             </li>

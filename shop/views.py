@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from cart.forms import CartAddProductForm
 from cart.cart import Cart
+from django.http import HttpResponseRedirect
+from django.views.generic import CreateView, UpdateView
+from django.contrib import messages
+from django.urls import reverse
 
 
 def product_list(request, category_slug=None):
@@ -54,3 +58,34 @@ def search(request):
         return render(request, 'shop/search.html', {'searched': searched, 'products': products})
     else:
         return render(request, 'shop/search.html', {})
+
+class ProductCreate(CreateView):
+    model = Product
+    fields = ['category', 'name', 'slug', 'image', 'description', 'price', 'available', 'quantity']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponseRedirect(reverse('shop:product_list'))
+
+
+class ProductUpdate(UpdateView):
+    model = Product
+    fields = ['category', 'name', 'slug', 'image', 'description', 'price', 'available', 'quantity']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponseRedirect(reverse('shop:product_list'))
+
+
+def product_delete(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    try:
+        product.delete()
+        messages.success(request, (product.name + ' ' + 'has been successfully deleted'))
+        return HttpResponseRedirect(reverse('shop:product_list'))
+    except:
+        messages.success(request, ("Error." + ' ' + product.name + ' ' + "cannot deleted"))
+        return HttpResponseRedirect(reverse('shop:product_list'))
+

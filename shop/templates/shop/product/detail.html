@@ -17,6 +17,13 @@
             <input type="submit" value="Add to cart">
         </form>
         {{ product.description|linebreaks }}
+        {% if user.is_superuser %}
+            <a href="{% url "shop:product_delete" pk=product.pk%}"
+               onclick="return confirm('Are you sure you want to delete this item?')"
+               class="btn btn-danger">Delete</a>
+            <a href="{% url 'shop:product_update' pk=product.pk %}" class="btn btn-primary">Edit</a>
+        {% endif %}
+
     </div>
     <br>
     <div>
