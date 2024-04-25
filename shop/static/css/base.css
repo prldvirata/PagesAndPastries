@@ -1,12 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
-body { 
+body {
     margin:0;
     padding:0;
     font-family:helvetica, sans-serif;
 }
 
-h1, h2, h3, h4, h5 , h6 { 
+h1, h2, h3, h4, h5 , h6 {
     font-family: 'Ubuntu', sans-serif; font-weight:normal;
 }
 
@@ -44,7 +44,7 @@ a.button.light {
 table {
     width:100%;
     border-spacing:0;
-    border-collapse: collapse; 
+    border-collapse: collapse;
 }
 
 table th, table td {
@@ -111,7 +111,7 @@ ul.errorlist {
    color:#ff0000;
    clear:both;
    font-size:13px;
-   margin:0; 
+   margin:0;
    padding:0;
 }
 
@@ -180,7 +180,7 @@ ul.errorlist {
 #main {
     float:left;
     width: 96%;
-    margin-right:-220px; 
+    margin-right:-220px;
     overflow:hidden;
 }
 
@@ -327,4 +327,92 @@ form div.field {
     background:#f2e4d1;
     color:#756556;
     border-radius:4px;
+}
+
+.rating-list li {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+}
+
+.rating-list li:hover,
+.rating-list li:hover ~ li {
+    color: orange;
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+
+.checked {
+    color: orange;
+}
+
+.rate > input {
+    display: none;
+}
+
+.rate {
+    display: inline-block;;
+    border: 0;
+}
+
+.rate > label {
+    float: right;
+}
+
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-family: FontAwesome;
+    content: "\f005";
+    margin: 0;
+    padding: 0.3rem .2rem;
+    cursor: pointer;
+}
+
+/* Half star */
+.rate .half:before {
+    content: "\f089";
+    position: absolute;
+    padding-right: 0;
+}
+
+input:checked ~ label, label:hover ~ label {
+    color: #ffb503;
+}
+
+/* hover hightlight */
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label {
+    color: #cc9000;
+}
+
+.rating-star i {
+    color: #ffb503 !important;
+}
+.main_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_price {
+    display: inline-block;
+    float: left;
+}
+
+.left_title {
+    text-transform: uppercase;
+}
+
+.feature {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    margin-top: 70px;
+    text-align: center;
+    color: #3875d7;
 }

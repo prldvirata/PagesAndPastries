@@ -19,17 +19,149 @@
             {% endfor %}
         </ul>
     </div>
-    <div id="main" class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
-        {% for product in products %}
-            <div class="item">
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="
-                            {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-                </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-                ${{ product.price }}
-            </div>
-        {% endfor %}
+     <div id="main" class="product-list">
+        <h1>
+            {% if user.is_authenticated %}
+                <h2 class="top-menu">Welcome {{ user.username }} to Pages and Pastries</h2>
+            {% else %}
+                <h2>Welcome to Pages and Pastries!</h2>
+            {% endif %}
+        </h1>
+        <div>
+            {% if not category %}
+                <div class="feature">
+                    {% for product in products %}
+                        {% if product.feature == True %}
+
+                            <div class="item">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="
+                                            {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                                </a>
+                                <div class="content">
+                                    <div class="main_title">
+                                        <div class="left_title">
+                                            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                        </div>
+                                        <div class="right_title">
+                                            <div class="rating-star">
+                        <span>
+                            <i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}"
+                               aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}"
+                               aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}"
+                               aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}"
+                               aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}"
+                               aria-hidden="true"></i>
+			            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="left_price">
+                                        <span>${{ product.price }}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+                <hr/>
+                <div class="title">
+                    <h3>All Products</h3>
+                </div>
+                {% for product in products %}
+                    <div class="item">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+
+                                    {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                        </a>
+                        <div class="content">
+                            <div class="main_title">
+                                <div class="left_title">
+                                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                </div>
+                                <div class="right_title">
+                                    <div class="rating-star">
+                                <span>
+                                    <i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+        			            </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="left_price">
+                                <span>${{ product.price }}</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% else %}
+                {% for product in products %}
+
+                    <div class="item">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+
+
+                                    {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                        </a>
+                        <div class="content">
+                            <div class="main_title">
+                                <div class="left_title">
+                                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                </div>
+                                <div class="right_title">
+                                    <div class="rating-star">
+                                <span>
+                                    <i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}"
+                                       aria-hidden="true"></i>
+        			            </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="left_price">
+                                <span>${{ product.price }}</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+
+
+        </div>
+        <div>
+
+
+        </div>
     </div>
 {% endblock %}
