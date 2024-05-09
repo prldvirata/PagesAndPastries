@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from shop import views
 from django.contrib.auth import views as auth_views
 
 
@@ -30,7 +30,7 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
     # IMPORTANT – THE URL BELOW MUST BE AFTER THE PASSWORD RESET CUSTOM FORM
-    # ABOVE if included- was in front of the reset password
+    # ABOVE if included-was in front of the reset password
     # bringing up the django version first
     # path('', include('django.contrib.auth.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

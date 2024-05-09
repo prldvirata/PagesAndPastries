@@ -2,13 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product, ReviewRating
 from cart.forms import CartAddProductForm
 from cart.cart import Cart
-from django.http import HttpResponseRedirect, request
+from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView
 from django.contrib import messages
 from django.urls import reverse
 from .forms import ReviewForm
 from django.core.mail import send_mail
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 
 
 def product_list(request, category_slug=None):
