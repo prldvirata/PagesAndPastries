@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -121,14 +122,14 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 if not DEBUG:
- STATIC_URL = '/static/'
- STATIC_ROOT = os.path.join(BASE_DIR,"static")
- MEDIA_ROOT = MEDIA_DIR
- MEDIA_URL = '/media/'
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    MEDIA_ROOT = MEDIA_DIR
+    MEDIA_URL = '/media/'
 
 else:
- MEDIA_URL = '/media/'
- STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+    STATIC_URL = '/static/'
 # with products in the database when DEBUG = False
 # pythonanywhere should serve the static files automatically
 
@@ -150,3 +151,12 @@ import os
 MEDIA_URL = 'media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Email settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'unostudent99@gmail.com'
+EMAIL_HOST_PASSWORD = 'Imastudent99'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+SERVER_EMAIL = 'root@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

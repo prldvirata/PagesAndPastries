@@ -2,11 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product, ReviewRating
 from cart.forms import CartAddProductForm
 from cart.cart import Cart
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from django.views.generic import CreateView, UpdateView
 from django.contrib import messages
 from django.urls import reverse
 from .forms import ReviewForm
+from django.core.mail import send_mail
+from django.contrib.auth.models import User, Group
 
 
 def product_list(request, category_slug=None):
@@ -116,3 +118,20 @@ def submit_review(request, product_id):
                 data.save()
                 messages.success(request, 'Thank you! Your review has been submitted.')
                 return redirect(url)
+
+
+# add send e-mail confirmation
+# set up the subject, message, and user’s email address
+subject = '{}, the email subject'.format
+message = 'this is the message "{}"'.format
+
+user = User
+user_email = user.email
+
+# try to send the e-mail – note you can send to multiple users – this just sends
+# to one user.
+try:
+    send_mail(subject, message, 'unostudent99@gmail.com', [user_email])
+    sent = True
+except:
+    print("Error sending e-mail")
