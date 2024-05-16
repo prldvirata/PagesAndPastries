@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import Select
 
 import warnings
 
@@ -39,7 +40,8 @@ class ll_ATS(unittest.TestCase):
 
         driver.find_element(By.XPATH, "//a[contains(., 'Add Item')]").click()
         time.sleep(3)
-        driver.find_element(By.ID, "id_category").click()
+        select = Select(driver.find_element(By.ID, "id_category"))
+        select.select_by_value('1')
         elem = driver.find_element(By.ID, "id_name")
         elem.send_keys(name)
         elem = driver.find_element(By.ID, "id_slug")
