@@ -30,10 +30,10 @@ class ll_ATS(unittest.TestCase):
         elem.send_keys(user)
         elem = driver.find_element(By.ID, "id_password")
         elem.send_keys(pwd)
-        time.sleep(3)
+        time.sleep(10)
         elem.send_keys(Keys.RETURN)
         driver.get("https://pvirata.pythonanywhere.com")
-        time.sleep(3)
+        time.sleep(5)
 
 
     def tearDown(self):

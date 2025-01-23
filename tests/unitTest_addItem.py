@@ -33,13 +33,13 @@ class ll_ATS(unittest.TestCase):
         elem.send_keys(user)
         elem = driver.find_element(By.ID, "id_password")
         elem.send_keys(pwd)
-        time.sleep(3)
+        time.sleep(5)
         elem.send_keys(Keys.RETURN)
         driver.get("https://pvirata.pythonanywhere.com")
-        time.sleep(3)
+        time.sleep(5)
 
         driver.find_element(By.XPATH, "//a[contains(., 'Add Item')]").click()
-        time.sleep(3)
+        time.sleep(5)
         select = Select(driver.find_element(By.ID, "id_category"))
         select.select_by_value('1')
         elem = driver.find_element(By.ID, "id_name")
@@ -49,7 +49,7 @@ class ll_ATS(unittest.TestCase):
         elem = driver.find_element(By.ID, "id_price")
         elem.send_keys(prc)
         elem.send_keys(Keys.RETURN)
-        time.sleep(3)
+        time.sleep(10)
 
         def tearDown(self):
             self.driver.quit()

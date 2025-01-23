@@ -24,19 +24,19 @@ class ll_ATS(unittest.TestCase):
 
         driver = self.driver
         driver.maximize_window()
-        driver.get("https://pvirata.pythonanywhere.com")
+        driver.get("https://pvirata.pythonanywhere.com/admin")
 
         elem = driver.find_element(By.ID, "id_username")
         elem.send_keys(user)
         elem = driver.find_element(By.ID, "id_password")
         elem.send_keys(pwd)
-        time.sleep(3)
+        time.sleep(5)
         elem.send_keys(Keys.RETURN)
         driver.get("https://pvirata.pythonanywhere.com")
-        time.sleep(3)
+        time.sleep(5)
         driver.find_element(By.XPATH, "//a[contains(., 'Chocolate Chip Cookies')]").click()
 
-        time.sleep(2)
+        time.sleep(15)
 
         def tearDown(self):
             self.driver.quit()
